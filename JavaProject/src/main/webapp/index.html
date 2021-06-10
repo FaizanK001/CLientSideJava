@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="css/styles.css">
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<title>Film Finder</title>
+</head>
+<body>
+
+<h1>Welcome to Web Service Assignment</h1>
+ 
+   
+<form method="get" action="#">
+<input type="text" placeholder="Search.." id="getMovie" name="getFilm"></input>
+
+ 
+<br><br>
+<!--Radio Button to Search BY ID or Name  -->
+<input type="radio"  name="data" value="filmid" id="filmid">
+<label for="filmid">Search By ID</label><br>
+<input type="radio"  name="data" value="filmname" id="filmname">
+<label for="filmname">Search By Name</label><br>
+
+<!--Combobox to choose the format of the data  -->
+<label for="Choice">Choose Your Data Format:</label>
+<select name="format" id="combobox" class="btn btn-primary dropdown-toggle">
+<option value="json" id="json">json</option>
+<option value="xml" id="xml">xml</option>
+<option value="text" id="text">text</option>
+</select>
+</form>
+  
+<br><br>
+<!--Panel to Show data on the main screen-->
+<div style="width: 600px;" class="panel panel-primary"  data-toggle="collapse" data-target="#demo" >
+<div class="panel-heading">Film Details</div>
+ 
+  
+<div class="form-group" id="filmsdetails">
+<label class="control-label col-sm-2" for="id">ID:</label><p id="id"></p>
+<label class="control-label col-sm-2" for="title">TITLE:</label><p id="title"></p>
+<label class="control-label col-sm-2" for="year">YEAR:</label><p id="year"></p>
+<label class="control-label col-sm-2" for="director">DIRECTOR:</label><p id="director"></p>
+<label class="control-label col-sm-2" for="stars">STARS:</label><p id="stars"></p>
+<label class="control-label col-sm-2" for="review">REVIEW:</label><p id="review"></p>
+</div>
+
+<div id="rawdata">
+
+
+</div>
+
+
+<!--Update Button-->
+<button type="button" id="updatebtn" class="btn btn-warning" data-toggle="modal" data-target="#update">Update Film</button>
+<div class="modal fade" id="update" role="dialog">
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title">update Film</h4>
+</div>
+<!--Choose to format to send data in the database -->
+<div class= "modal1">
+<input type="radio"  name="Udataformat" value="updatej" id="updatejson">
+<label for="id">json</label>
+<input type="radio"  name="Udataformat" value="updatex" id="updatexml">
+<label for="name">xml</label>
+<br>
+</div>
+<!--insert Data in order to update--> 
+<div class="modal-body">    
+<label>ID:</label><input type="text"  id="uid"></input>
+<br><br>
+<label>Title:</label><input type="text"   id="utitle"></input>
+<br><br>
+<label>YEAR:</label><input type="text"  id="uyear"></input>
+<br><br>
+<label>DIRECTOR:</label><input type="text"  id="udirector"></input>
+<br><br>
+<label>STARS:</label><input type="text"  id="ustars"></input>
+<br><br>
+<label>REVIEWS</label><textarea type="text" id="ureview"></textarea>
+<br>
+<button  id="putfilmbtn">Update</button>
+
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Delete Film Button -->
+<button type="button" id="deletebtn" class="btn btn-danger" data-toggle="modal" data-target="#Delete">Delete Film</button>
+<div class="modal fade" id="Delete" role="dialog">
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title">Delete Film</h4>
+</div>
+<!--input ID to delete film--> 
+<label class="control-label col-sm-3" for="did">Delete By ID:</label> <input type="text" id="did"></input>
+<button  id="deletefilmbtn">Delete</button>    
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<button  id="RawDatabtn" class="btn btn-info">Raw Data</button>
+
+</div>
+
+<!-- Search Films by id or name  -->
+<button id="getfilmbtn" class="btn btn-info">Search Film</button>
+
+
+
+<!-- Add Film button -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">Add Film</button>
+<div class="modal fade" id="create" role="dialog">
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title">Add Film</h4>
+</div>
+<!--Send the data in json or xml format to database-->
+
+<input type="radio"  name="dataformat" value="sendj" id="sendjson">
+<label for="id">json</label>
+<input type="radio"  name="dataformat" value="sendx" id="sendxml">
+<label for="name">xml</label><br>
+<!--insert Data in order to add film--> 
+<div class="modal-body">
+<label>ID:</label><input type="text" id="mid"></input>
+<br><br>
+<label>Title:</label><input type="text"  id="mtitle"></input>
+<br><br>
+<label>YEAR:</label><input type="text"  id="myear"></input>
+<br><br>
+<label>DIRECTOR:</label><input type="text"  id="mdirector"></input>
+<br><br>
+<label>STARS:</label><input type="text"  id="mstars"></input>
+<br><br>
+<label>REVIEWS</label><textarea type="text" id="mreview"></textarea>
+<br>
+<button  id="postfilmbtn">submit</button>
+</div>     
+
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+   
+<!-- Retrieve all data in  json, xml and string format -->
+<button class="btn btn-primary" id="getfilmsall">Get All Movies</button>
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../Scripts/Ajax.js"></script>
+<script src="../Scripts/AllFilm.js"></script>
+<script src="../Scripts/RawNData.js"></script>
+<script src="../Scripts/sendingdata.js"></script>
+
+</html>

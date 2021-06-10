@@ -1,0 +1,12 @@
+.modal-body {
+	background-color:#d6bd91;
+}
+.modal-body input{
+	margin-left: 9em;
+}
+.modal-body label{
+	position: absolute;
+}
+.modal-body textarea{
+	margin-left: 9em;
+}
